@@ -21,7 +21,15 @@
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => {
+const middleware = ( ( req, res , next ) => {
+     if ( req.method === "GET" ) {
+        return res.send("blocked");
+     };
+
+     next();
+});
+
+app.get("/", middleware, (req, res) => {
     res.send("Home route");
 });
 
