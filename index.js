@@ -1,17 +1,15 @@
-const http =  require("http");
+const express = require("express");
+const app = express();
 
-const server = http.createServer((req,res)=> {
-    if ( req.url == "/") {
-        res.end("hellow world ");
-    }else {
-        res.end("hai world");
-    }
+app.get("/",(req, res ) => {
+    return res.send("hellow from express server");
+});
+
+app.get("/hai" , ( req, res ) => {
+    return res.send("hai from express server");
 });
 
 
-
-
-
-server.listen(3001,() => {
-    console.log("server is listening on http://localhost:3001")
-})
+app.listen(3002,(req,res) => {
+    console.log("server is listening on port http://localhost:3002")
+}) 
