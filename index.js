@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const fs = require("fs/promises");
+
 
 
 
@@ -30,11 +32,41 @@ app.get("/sum/:num1",( req, res ) => {
     let query = req.query.num2;
 
     let sum = Number(path) + Number(query);
-    
+
     return res.send(`sum of path and query == ${sum}`);
 });
 
 
+
+
+async function readfile () {
+    try {
+        const data = await fs.readFile("example.txt","utf-8");
+        console.log(data);
+    }catch ( error ) {
+           
+        console.log("error reading file ",error);
+    }
+};
+
+
+readfile();
+
+
+let content = "hai we writing a file ";
+
+async function writefile (params) {
+ 
+    try {
+        fs.writeFile("example.text",content,"utf-8");
+        console.log("file writern successfully");
+    }catch ( error ) {
+        console.log("file writening is failed",error )
+    }
+};
+
+
+writefile()
 
 app.listen(3002,(req,res) => {
     console.log("server is listening on port http://localhost:3002")
