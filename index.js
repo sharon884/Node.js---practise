@@ -9,6 +9,13 @@ app.use(( req, res, next ) => {
 });
 
 
+app.use(( req, res, next ) => {
+    if (req.method === "GET" ) {
+        return res.send("blocked");
+    };
+    next();
+})
+
 
 app.get("/",(req, res ) => {
     return res.send("hellow from express server");
