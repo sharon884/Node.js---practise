@@ -25,6 +25,15 @@ app.get("/hai" , ( req, res ) => {
     return res.send("hai from express server");
 });
 
+app.get("/sum/:num1",( req, res ) => {
+    let path = req.params.num1;
+    let query = req.query.num2;
+
+    let sum = Number(path) + Number(query);
+    
+    return res.send(`sum of path and query == ${sum}`);
+});
+
 
 
 app.listen(3002,(req,res) => {
